@@ -2,16 +2,20 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/Reproduzivel.php';
-require_once __DIR__ . '/Midia.php';
-require_once __DIR__ . '/VideoCurto.php';
+require_once 'Midia.php';
+require_once 'Reproduzivel.php';
+require_once 'Musica.php';
+require_once 'Podcast.php';
+require_once 'VideoCurto.php';
+require_once 'Playlist.php';
 
-$videoCurto = new VideoCurto(
-    titulo: 'Dica rápida de PHP',
-    criador: 'Camila',
-    duracao: 60,
-    urlVideo: 'https://exemplo.com/video',
-    urlThumbnail: 'https://exemplo.com/thumb.jpg'
-);
+$musica = new Musica('Bohemian Rhapsody', 'Queen', 354, '1975-10-31');
+$podcast = new Podcast('Episodio 1', 'Joao Silva', 3600, 'Tech Cast', '2024-01-15');
+$video = new VideoCurto('Dica rapida de PHP', 'Camila', 60, 'https://exemplo.com/video');
 
-echo $videoCurto->reproduzir() . PHP_EOL;
+$playlist = new Playlist('Minha Playlist');
+$playlist->adicionar($musica);
+$playlist->adicionar($podcast);
+$playlist->adicionar($video);
+
+$playlist->reproduzirTodos();
